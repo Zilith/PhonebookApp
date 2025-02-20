@@ -70,13 +70,13 @@ Implement the functionality for displaying the information for a single phoneboo
 
 If an entry for the given id is not found, the server has to respond with the appropriate status code.
 
-#### 3.4: Phonebook backend step 4
+#### 3.4: Phonebook backend step 4 *Done*
 
 Implement functionality that makes it possible to delete a single phonebook entry by making an HTTP DELETE request to the unique URL of that phonebook entry.
 
 Test that your functionality works with either Postman or the Visual Studio Code REST client.
 
-#### 3.5: Phonebook backend step 5
+#### 3.5: Phonebook backend step 5 *Done*
 
 Expand the backend so that new phonebook entries can be added by making HTTP POST requests to the address [http://localhost:3001/api/persons](http://localhost:3001/api/persons).
 
