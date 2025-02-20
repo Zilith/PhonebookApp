@@ -1,5 +1,5 @@
 # FullstackPart3
- This is for the exercies of the part 3 of que Fullstack Open course
+ This is for the exercies of the part 3 of the Fullstack Open course -> https://fullstackopen.com/en/part3/
 
 ### Exercises 3.1.-3.6. 
 
