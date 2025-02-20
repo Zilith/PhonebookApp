@@ -26,20 +26,26 @@ let persons = [
   },
 ];
 
+const reqDate = () => {
+  return new Date();
+};
+
 app.get("/", (req, res) => {
   res.status(200).json({
     res: "OK",
   });
 });
 
-
 app.get("/info", (req, res) => {
-    res.send(`<p>The phonebook has info for ${1} people </p> `)
-})
+  time = reqDate();
+  // console.log(time)
+  res.send(`<p>The phonebook has info for ${persons.length} people </p> 
+        <p>${time}</p>`);
+});
 
 app.get("/api/persons", (req, res) => {
-    res.json(persons)
-})
+  res.json(persons);
+});
 
 const PORT = 3001;
 app.listen(PORT, () => {
