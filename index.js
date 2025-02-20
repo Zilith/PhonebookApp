@@ -35,6 +35,11 @@ const generateId = (min, max) => {
   return random;
 };
 
+const nameExist = (name) => {
+  const exist = persons.find((person) => person.name === name);
+  return Boolean(exist);
+};
+
 app.get("/", (req, res) => {
   res.status(200).json({
     res: "OK",
@@ -69,21 +74,34 @@ app.post("/api/persons", (req, res) => {
   const body = req.body;
   const id = generateId(0, 500);
 
-  if (!(body.name && body.number)) {
+  if (!body.name) {
     return res.status(400).json({
-      error: "name or number is missing",
+      error: "name is missing",
+    });
+  }
+
+  if (!body.number) {
+    return res.status(400).json({
+      error: "number is missing",
+    });
+  }
+
+  const notUnique = nameExist(body.name);
+
+  if (notUnique) {
+    return res.status(400).json({
+      error: `the name ${body.name} is already in the phonebook`,
     });
   }
 
   const person = {
     id: id,
     name: body.name,
-    number: body.number
-  }
+    number: body.number,
+  };
 
   persons = persons.concat(person);
-  res.json(person)
-
+  res.json(person);
 });
 
 app.delete("/api/persons/:id", (req, res) => {

@@ -82,7 +82,7 @@ Expand the backend so that new phonebook entries can be added by making HTTP POS
 
 Generate a new id for the phonebook entry with the [Math.random](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random) function. Use a big enough range for your random values so that the likelihood of creating duplicate ids is small.
 
-#### 3.6: Phonebook backend step 6
+#### 3.6: Phonebook backend step 6 *Done*
 
 Implement error handling for creating new entries. The request is not allowed to succeed, if:
 
