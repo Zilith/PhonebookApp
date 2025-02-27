@@ -104,7 +104,7 @@ The documentation for Morgan is not the best, and you may have to spend some tim
 
 Morgan is installed just like all other libraries with the _npm install_ command. Taking morgan into use happens the same way as configuring any other middleware by using the _app.use_ command.
 
-#### 3.8*: Phonebook backend step 8
+#### 3.8*: Phonebook backend step 8 *Done*
 
 Configure morgan so that it also shows the data sent in HTTP POST requests:
 
