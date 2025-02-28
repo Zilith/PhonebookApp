@@ -1,6 +1,6 @@
 # FullstackPart3
  This is for the exercies of the part 3 of the Fullstack Open course -> https://fullstackopen.com/en/part3/
- Link to online application -> 
+ Link to online application -> https://fullstackpart3-40i3.onrender.com
 
 ### Exercises 3.1.-3.6. *Done*
 
@@ -130,7 +130,7 @@ Make the backend work with the phonebook frontend from the exercises of the prev
 
 You will probably have to do some small changes to the frontend, at least to the URLs for the backend. Remember to keep the developer console open in your browser. If some HTTP requests fail, you should check from the _Network_-tab what is going on. Keep an eye on the backend's console as well. If you did not do the previous exercise, it is worth it to print the request data or _request.body_ to the console in the event handler responsible for POST requests.
 
-#### 3.10 Phonebook backend step 10 
+#### 3.10 Phonebook backend step 10 *Done*
 
 Deploy the backend to the internet, for example to Fly.io or Render.
 
@@ -144,7 +144,7 @@ Create a README.md at the root of your repository, and add a link to your online
 
 You shall NOT be deploying the frontend directly at any stage of this part. It is just backend repository that is deployed throughout the whole part, nothing else.
 
-#### 3.11 Full Stack Phonebook
+#### 3.11 Full Stack Phonebook *Done*
 
 Generate a production build of your frontend, and add it to the Internet application using the method introduced in this part.
 
