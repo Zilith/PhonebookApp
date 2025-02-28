@@ -1,7 +1,8 @@
 # FullstackPart3
  This is for the exercies of the part 3 of the Fullstack Open course -> https://fullstackopen.com/en/part3/
+ Link to online application -> 
 
-### Exercises 3.1.-3.6. 
+### Exercises 3.1.-3.6. *Done*
 
 **NB:** It's recommended to do all of the exercises from this part into a new dedicated git repository, and place your source code right at the root of the repository. Otherwise, you will run into problems in exercise 3.10.
 
@@ -94,7 +95,7 @@ Respond to requests like these with the appropriate status code, and also send b
 ```js
 { error: 'name must be unique' }
 ```
-### Exercises 3.7.-3.8.
+### Exercises 3.7.-3.8. *Done*
 
 #### 3.7: Phonebook backend step 7 *Done*
 
@@ -118,3 +119,35 @@ This exercise can be completed in a few different ways. One of the possible solu
 
 - [creating new tokens](https://github.com/expressjs/morgan#creating-new-tokens)
 - [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify)
+
+### Exercises 3.9.-3.11
+
+The following exercises don't require many lines of code. They can however be challenging, because you must understand exactly what is happening and where, and the configurations must be just right.
+
+#### 3.9 Phonebook backend step 9 *Done*
+
+Make the backend work with the phonebook frontend from the exercises of the previous part. Do not implement the functionality for making changes to the phone numbers yet, that will be implemented in exercise 3.17.
+
+You will probably have to do some small changes to the frontend, at least to the URLs for the backend. Remember to keep the developer console open in your browser. If some HTTP requests fail, you should check from the _Network_-tab what is going on. Keep an eye on the backend's console as well. If you did not do the previous exercise, it is worth it to print the request data or _request.body_ to the console in the event handler responsible for POST requests.
+
+#### 3.10 Phonebook backend step 10 
+
+Deploy the backend to the internet, for example to Fly.io or Render.
+
+Test the deployed backend with a browser and Postman or VS Code REST client to ensure it works.
+
+**PRO TIP:** When you deploy your application to Internet, it is worth it to at least in the beginning keep an eye on the logs of the application **AT ALL TIMES**.
+
+Create a README.md at the root of your repository, and add a link to your online application to it.
+
+**NOTE**: as it was said, you should deploy the BACKEND to the cloud service. If you are using Fly.io the commands should be run in the root directory of the backend (that is, in the same directory where the backend package.json is). In case of using Render, the backend must be in the root of your repository.
+
+You shall NOT be deploying the frontend directly at any stage of this part. It is just backend repository that is deployed throughout the whole part, nothing else.
+
+#### 3.11 Full Stack Phonebook
+
+Generate a production build of your frontend, and add it to the Internet application using the method introduced in this part.
+
+**NB** If you use Render, make sure the directory _dist_ is not ignored by git on the backend.
+
+Also, make sure that the frontend still works locally (in development mode when started with command _npm run dev_).
