@@ -20,11 +20,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:ui": "rmdir /s /q dist && cd ..\\Fullstack\\Part2\\phonebook && npm run build && xcopy /E /I dist ..\\..\\..\\FullstackPart3\\dist",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push"
-
   },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
+    "mongoose": "^8.12.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
