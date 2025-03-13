@@ -152,7 +152,7 @@ Generate a production build of your frontend, and add it to the Internet applica
 
 Also, make sure that the frontend still works locally (in development mode when started with command _npm run dev_).
 
-#### 3.12: Command-line database
+#### 3.12: Command-line database *Done*
 
 Create a cloud-based MongoDB database for the phonebook application with MongoDB Atlas.
 
@@ -220,3 +220,17 @@ Person
 ```
 
 **NB:** If you define a model with the name _Person_, mongoose will automatically name the associated collection as _people_.
+
+#### 3.13: Phonebook database, step 1 *Done*
+
+Change the fetching of all phonebook entries so that the data is _fetched from the database_.
+
+Verify that the frontend works after the changes have been made.
+
+In the following exercises, write all Mongoose-specific code into its own module, just like we did in the chapter [Database configuration into its own module](https://fullstackopen.com/en/part3/saving_data_to_mongo_db#moving-db-configuration-to-its-own-module).
+
+#### 3.14: Phonebook database, step 2 *Done*
+
+Change the backend so that new numbers are _saved to the database_. Verify that your frontend still works after the changes.
+
+At this stage, you can ignore whether there is already a person in the database with the same name as the person you are adding.
