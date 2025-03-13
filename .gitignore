@@ -44,4 +44,4 @@ node_modules
 !/var/package
 /var/package/*
 !/var/package/*.xml
-
+.env

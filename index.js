@@ -1,7 +1,9 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const morgan = require("morgan");
 const cors = require("cors");
+const Person = require("./models/person.js");
 
 app.use(express.static("dist"))
 app.use(cors());
@@ -11,36 +13,8 @@ morgan.token("data", function (req, res) {
 });
 app.use(morgan(":method :url :response-time :data"));
 
-let persons = [
-  {
-    id: 1,
-    name: "Arto Hellas",
-    number: "040-123456",
-  },
-  {
-    id: 2,
-    name: "Ada Lovelace",
-    number: "39-44-5323523",
-  },
-  {
-    id: 3,
-    name: "Dan Abramov",
-    number: "12-43-234345",
-  },
-  {
-    id: 4,
-    name: "Mary Poppendieck",
-    number: "39-23-6423122",
-  },
-];
-
 const reqDate = () => {
   return new Date();
-};
-
-const generateId = (min, max) => {
-  const random = Math.random() * (max - min) + min;
-  return random;
 };
 
 const nameExist = (name) => {
@@ -62,7 +36,9 @@ app.get("/info", (req, res) => {
 });
 
 app.get("/api/persons", (req, res) => {
-  res.json(persons);
+  Person.find({}).then((persons) => {
+    res.json(persons);
+  });
 });
 
 app.get("/api/persons/:id", (req, res) => {
@@ -80,7 +56,6 @@ app.get("/api/persons/:id", (req, res) => {
 
 app.post("/api/persons", (req, res) => {
   const body = req.body;
-  const id = generateId(0, 500);
 
   if (!body.name) {
     return res.status(400).json({
@@ -88,28 +63,28 @@ app.post("/api/persons", (req, res) => {
     });
   }
 
-  if (!body.number) {
+  if (!body.phone) {
     return res.status(400).json({
-      error: "number is missing",
+      error: "phone is missing",
     });
   }
 
   const notUnique = nameExist(body.name);
 
-  if (notUnique) {
+  if (notUnique && false) {
     return res.status(400).json({
       error: `the name ${body.name} is already in the phonebook`,
     });
   }
 
-  const person = {
-    id: id,
+  const person = new Person({
     name: body.name,
-    number: body.number,
-  };
+    phone: body.phone,
+  });
 
-  persons = persons.concat(person);
-  res.json(person);
+  person.save().then((savedPerson) => {
+    res.json(savedPerson);
+  });
 });
 
 app.delete("/api/persons/:id", (req, res) => {
