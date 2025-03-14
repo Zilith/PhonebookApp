@@ -17,11 +17,6 @@ const reqDate = () => {
   return new Date();
 };
 
-const nameExist = (name) => {
-  const exist = persons.find((person) => person.name === name);
-  return Boolean(exist);
-};
-
 app.get("/", (req, res) => {
   res.status(200).json({
     res: "OK",
