@@ -35,26 +35,29 @@ app.get("/info", (req, res) => {
         <p>${time}</p>`);
 });
 
-app.get("/api/persons", (req, res) => {
-  Person.find({}).then((persons) => {
-    res.json(persons);
-  });
+app.get("/api/persons", (req, res, next) => {
+  Person.find({})
+    .then((persons) => {
+      res.json(persons);
+    })
+    .catch((error) => next(error));
 });
 
-app.get("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id);
-  console.log(id);
-  const person = persons.find((person) => person.id === id);
-  if (person) {
-    res.json(person);
-  } else {
-    res.status(404).json({
-      error: `the person with the id of ${id} does not exist`,
-    });
-  }
+app.get("/api/persons/:id", (req, res, next) => {
+  Person.findById(req.params.id)
+    .then((person) => {
+      if (person) {
+        res.json(person);
+      } else {
+        res.status(404).json({
+          error: `the person with the id of ${req.params.id} does not exist`,
+        });
+      }
+    })
+    .catch((error) => next(error));
 });
 
-app.post("/api/persons", (req, res) => {
+app.post("/api/persons", (req, res, next) => {
   const body = req.body;
 
   if (!body.name) {
@@ -69,28 +72,53 @@ app.post("/api/persons", (req, res) => {
     });
   }
 
-  const notUnique = nameExist(body.name);
+  Person.find({ name: body.name })
+    .then((result) => {
+      console.log("existe?", Boolean(result.length));
+      if (Boolean(result.length)) {
+        console.log("enter if");
+        return res.status(400).json({
+          error: `the name ${body.name} is already in the phonebook`,
+        });
+      } else {
+        const person = new Person({
+          name: body.name,
+          phone: body.phone,
+        });
 
-  if (notUnique && false) {
-    return res.status(400).json({
-      error: `the name ${body.name} is already in the phonebook`,
-    });
-  }
-
-  const person = new Person({
-    name: body.name,
-    phone: body.phone,
-  });
-
-  person.save().then((savedPerson) => {
-    res.json(savedPerson);
-  });
+        person.save().then((savedPerson) => {
+          res.json(savedPerson);
+        });
+      }
+    })
+    .catch((error) => next(error));
 });
 
-app.delete("/api/persons/:id", (req, res) => {
-  const id = Number(req.params.id);
-  persons = persons.filter((person) => person.id !== id);
-  res.status(204).end();
+app.put("/api/persons/:id", (req, res, next) => {
+  const body = req.body;
+
+  const person = {
+    name: body.name,
+    phone: body.phone,
+  };
+
+  Person.findByIdAndUpdate(req.params.id, person, { new: true })
+    .then((updatedPerson) => {
+      if (updatedPerson) {
+        res.json(updatedPerson);
+      } else {
+        res.status(404).send({ error: "unknown id" });
+      }
+    })
+    .catch((error) => next(error));
+});
+
+app.delete("/api/persons/:id", (req, res, next) => {
+  Person.findByIdAndDelete(req.params.id)
+    .then((result) => {
+      res.status(204).end();
+    })
+    .catch((error) => next(error));
 });
 
 const unknownEndpoint = (req, res) => {
