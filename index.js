@@ -93,6 +93,23 @@ app.delete("/api/persons/:id", (req, res) => {
   res.status(204).end();
 });
 
+const unknownEndpoint = (req, res) => {
+  res.status(404).send({ error: "unknown endpoint" });
+};
+
+app.use(unknownEndpoint);
+
+const errorHandler = (error, req, res, next) => {
+  console.log("Error name:", error.name);
+  console.log("Error message:", error.message);
+
+  if (error.name === "CastError") {
+    return res.status(400).send({ error: "malformatted id" });
+  }
+};
+
+app.use(errorHandler);
+
 const PORT = 3001;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
