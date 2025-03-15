@@ -11,7 +11,8 @@ app.use(express.json());
 morgan.token("data", function (req, res) {
   return JSON.stringify(req.body);
 });
-app.use(morgan(":method :url :response-time :data"));
+morgan.token("origin", (req) => req.rawHeaders[1] || "no-origin");
+app.use(morgan(":method :url :response-time :data :origin"));
 
 const reqDate = () => {
   return new Date();
