@@ -1,4 +1,5 @@
 import personService from "../services/persons";
+import Notification from "./Notification";
 
 const PersonForm = ({
   persons,
@@ -20,17 +21,30 @@ const PersonForm = ({
         phone: newPhone,
       };
 
-      personService.create(personObject).then((returnedPerson) => {
-        setPersons(persons.concat(returnedPerson));
-        setNewName("");
-        setNewPhone("");
-        setFilteredPersons(persons.concat(returnedPerson));
-        console.log("returnedPerson", returnedPerson);
-        setNotificationMessage(`Added ${returnedPerson.name} to the phonebook`);
-        setTimeout(() => {
-          setNotificationMessage(null);
-        }, 5000);
-      });
+      personService
+        .create(personObject)
+        .then((returnedPerson) => {
+          setPersons(persons.concat(returnedPerson));
+          setNewName("");
+          setNewPhone("");
+          setFilteredPersons(persons.concat(returnedPerson));
+          setNotificationMessage(
+            `Added ${returnedPerson.name} to the phonebook`
+          );
+          setTimeout(() => {
+            setNotificationMessage(null);
+          }, 5000);
+        })
+        .catch((error) => {
+          console.log(
+            "Error al añadir una persona:",
+            error.response.data.error
+          );
+          setNotificationError(error.response.data.error);
+          setTimeout(() => {
+            setNotificationError(null);
+          }, 5000);
+        });
     } else {
       alert(`${newName} is already in the phonebook`);
       if (window.confirm(`Replace the old phone with a new one?`)) {
@@ -59,7 +73,9 @@ const PersonForm = ({
             setNotificationError(
               `The person ${samePerson.name} was already deleted from the server`
             );
-            setFilteredPersons(persons.filter((person) => person.id !== samePerson.id));
+            setFilteredPersons(
+              persons.filter((person) => person.id !== samePerson.id)
+            );
             setTimeout(() => {
               setNotificationError(null);
             }, 5000);
