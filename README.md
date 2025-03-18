@@ -1,3 +1,7 @@
+This is for the exercise of the part 3 of the Fullstack Open course -> https://fullstackopen.com/en/part3/
+
+Link to online application -> https://fullstackpart3-40i3.onrender.com
+
 # Phonebook Backend
 
 ## Description
