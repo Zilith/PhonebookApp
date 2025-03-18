@@ -36,6 +36,8 @@ This is the frontend of the Phonebook application. It was initially developed wi
 11. **Status Notifications**
 	- A notification message was added to indicate the success or failure of an operation.
 	- The message automatically disappears after a few seconds.
+	- Display an error message when a validation error occurs.
+	- Errors returned by Mongoose are now shown in the UI
 12. **Concurrency Error Handling**
 	- Detects if a contact has already been deleted in another instance of the application.
 	- Displays an error message if the operation fails due to outdated data.
