@@ -1,3 +1,7 @@
+This is for the exercise of the part 3 of the Fullstack Open course -> https://fullstackopen.com/en/part3/
+
+Link to online application -> https://fullstackpart3-40i3.onrender.com
+
 # Phonebook Frontend
 ## Description
 This is the frontend of the Phonebook application. It was initially developed with data stored in local state but was later integrated with a backend based on Node.js and Express, Whitch uses a MongoDB database.
