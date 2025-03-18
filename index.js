@@ -56,18 +56,6 @@ app.get("/api/persons/:id", (req, res, next) => {
 app.post("/api/persons", (req, res, next) => {
   const body = req.body;
 
-  if (!body.name) {
-    return res.status(400).json({
-      error: "name is missing",
-    });
-  }
-
-  if (!body.phone) {
-    return res.status(400).json({
-      error: "phone is missing",
-    });
-  }
-
   Person.find({ name: body.name })
     .then((result) => {
       console.log("existe?", Boolean(result.length));
