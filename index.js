@@ -116,7 +116,7 @@ const unknownEndpoint = (req, res) => {
 
 app.use(unknownEndpoint)
 
-const errorHandler = (error, req, res) => {
+const errorHandler = (error, req, res, _next) => {
   console.log('Error name:', error.name)
   console.log('Error message:', error.message)
 
